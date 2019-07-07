@@ -19,6 +19,7 @@
 *.props
 *.vc.db
 *.vc.vc.opendb
+*.lnk
 
 licence for header.txt
 
