@@ -3,12 +3,39 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+## This ignore file also ignores Visual Studio solutions and projects
+## as well as some more specific folder types
+
 # User-specific files
 *.rsuser
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
+
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.props
+*.vc.db
+*.vc.vc.opendb
+
+licence for header.txt
+
+# wip folders
+
+
+# private folders
+extlibs/
+backup/
+backup_*/
+test/
+test_*/
+temp/
+temp_*/
+temp_storage/
+PropertySheets/
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -18,8 +45,10 @@ mono_crash.*
 
 # Build results
 [Dd]ebug/
+[Dd]ebugStatic/
 [Dd]ebugPublic/
 [Rr]elease/
+[Rr]eleaseStatic/
 [Rr]eleases/
 x64/
 x86/
