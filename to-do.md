@@ -1,4 +1,4 @@
 - [x] convert to template that allows key type to be customised
 - [ ] make sure that strings can be used with UTF-8
 - [x] add ability to remove strings
-- [ ] add ability to remove/unload entire language
+- [x] add ability to remove/unload entire language
