@@ -5,6 +5,7 @@
 #include <vector>
 #include <unordered_map>
 
+template <class KeyT = std::string>
 class Lingo
 {
 public:
@@ -14,15 +15,15 @@ public:
 	bool setLanguage(std::size_t languageIndex);
 	std::size_t getCurrentLanguage() const;
 	std::size_t getNumberOfLanguages() const;
-	bool setString(const std::string& key, const std::string& string);
-	bool setString(const std::string& key, const std::string& string, std::size_t languageIndex);
-	bool setStrings(const std::vector<std::pair<std::string, std::string>>& strings); // first string in pair is key, second is string
-	bool setStrings(const std::vector<std::pair<std::size_t, std::pair<std::string, std::string>>>& strings); // first string in pair is key, second is string
-	std::string get(const std::string& key);
-	std::string get(const std::string& key, std::size_t languageIndex);
+	bool setString(const KeyT& key, const std::string& string);
+	bool setString(const KeyT& key, const std::string& string, std::size_t languageIndex);
+	bool setStrings(const std::vector<std::pair<KeyT, std::string>>& strings); // first in pair is key, second is string
+	bool setStrings(const std::vector<std::pair<std::size_t, std::pair<KeyT, std::string>>>& strings); // first in inner pair is key, second is string. first in outer pair is languageIndex and second is inner pair.
+	std::string get(const KeyT& key);
+	std::string get(const KeyT& key, std::size_t languageIndex);
 
 private:
-	using Language = std::unordered_map<std::string, std::string>;
+	using Language = std::unordered_map<KeyT, std::string>;
 	std::vector<Language> m_languages;
 	std::size_t m_currentLanguage;
 };
