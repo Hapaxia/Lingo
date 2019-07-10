@@ -82,6 +82,56 @@ std::string Lingo<KeyT>::get(const KeyT& key, const std::size_t languageIndex)
 }
 
 template <class KeyT>
+bool Lingo<KeyT>::removeString(const KeyT& key, const std::size_t languageIndex)
+{
+	assert(languageIndex < m_languages.size()); // languageIndex must be valid index
+	if (languageIndex >= m_languages.size() || !m_languages[languageIndex].count(key))
+		return false;
+	m_languages[languageIndex].erase(key);
+	return true;
+}
+
+template <class KeyT>
+bool Lingo<KeyT>::removeString(const KeyT& key, const std::vector<std::size_t>& languageIndices)
+{
+	bool fail{ false };
+	for (auto index : languageIndices)
+	{
+		if (!removeString(key, index))
+			fail = true;
+	}
+	return !fail;
+}
+
+template <class KeyT>
+bool Lingo<KeyT>::removeStrings(const std::vector<KeyT>& keys, const std::size_t languageIndex)
+{
+	assert(languageIndex < m_languages.size()); // languageIndex must be valid index
+	if (languageIndex >= m_languages.size())
+		return false;
+	bool fail{ false };
+	for (auto& key : keys)
+	{
+		if (!m_languages[languageIndex].count(key))
+			fail = true;
+		removeString(key, languageIndex);
+	}
+	return !fail;
+}
+
+template <class KeyT>
+bool Lingo<KeyT>::removeStrings(const std::vector<std::pair<KeyT, std::size_t>>& keys)
+{
+	bool fail{ false };
+	for (auto& key : keys)
+	{
+		if (!removeString(key.first, key.second))
+			fail = true;
+	}
+	return !fail;
+}
+
+template <class KeyT>
 inline std::size_t Lingo<KeyT>::getCurrentLanguage() const
 {
 	return m_currentLanguage;
@@ -103,6 +153,18 @@ template <class KeyT>
 inline std::string Lingo<KeyT>::get(const KeyT& key)
 {
 	return get(key, m_currentLanguage);
+}
+
+template <class KeyT>
+inline bool Lingo<KeyT>::removeString(const KeyT& key)
+{
+	return removeString(key, m_currentLanguage);
+}
+
+template <class KeyT>
+inline bool Lingo<KeyT>::removeStrings(const std::vector<KeyT>& keys)
+{
+	return removeStrings(keys, m_currentLanguage);
 }
 
 #endif // LINGO_LINGO_INL
