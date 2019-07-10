@@ -27,6 +27,10 @@ public:
 	bool removeStrings(const std::vector<KeyT>& keys); // remove multiple from current language
 	bool removeStrings(const std::vector<KeyT>& keys, std::size_t languageIndex); // remove multiple from specific language
 	bool removeStrings(const std::vector<std::pair<KeyT, std::size_t>>& keys); // remove multiple from specific languages. first in pair is key, second is language index
+	bool removeLanguage(); // removes current language
+	bool removeLanguage(std::size_t languageIndex); // removes specific language
+	bool clearLanguage(); // clears current language. language remains available but empty
+	bool clearLanguage(std::size_t languageIndex); // clears specific language. language remains available but empty
 
 private:
 	using Language = std::unordered_map<KeyT, std::string>;
