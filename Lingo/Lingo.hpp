@@ -31,6 +31,8 @@ public:
 	bool removeLanguage(std::size_t languageIndex); // removes specific language
 	bool clearLanguage(); // clears current language. language remains available but empty
 	bool clearLanguage(std::size_t languageIndex); // clears specific language. language remains available but empty
+	std::vector<KeyT> getKeys() const; // gets all keys in current language
+	std::vector<KeyT> getKeys(std::size_t languageIndex) const; // gets all keys in specific language
 
 private:
 	using Language = std::unordered_map<KeyT, std::string>;

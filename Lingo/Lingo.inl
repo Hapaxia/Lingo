@@ -154,6 +154,16 @@ bool Lingo<KeyT>::clearLanguage(const std::size_t languageIndex)
 }
 
 template <class KeyT>
+std::vector<KeyT> Lingo<KeyT>::getKeys(const std::size_t languageIndex) const
+{
+	assert(languageIndex < m_languages.size()); // languageIndex must be a valid index
+	std::vector<KeyT> keys;
+	for (auto& item : m_languages[languageIndex])
+		keys.emplace_back(item.first);
+	return keys;
+}
+
+template <class KeyT>
 inline std::size_t Lingo<KeyT>::getCurrentLanguage() const
 {
 	return m_currentLanguage;
@@ -199,6 +209,12 @@ template <class KeyT>
 inline bool Lingo<KeyT>::removeLanguage()
 {
 	return removeLanguage(m_currentLanguage);
+}
+
+template <class KeyT>
+std::vector<KeyT> Lingo<KeyT>::getKeys() const
+{
+	return getKeys(m_currentLanguage);
 }
 
 #endif // LINGO_LINGO_INL
