@@ -7,6 +7,7 @@
 template <class KeyT>
 Lingo<KeyT>::Lingo()
 	: m_languages(1u)
+	, m_currentLanguage{ 0u }
 {
 }
 
